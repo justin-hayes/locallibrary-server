@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    db:
+        image: mongo
+
+    web:
+        image: node:argon
+        volumes:
+            - ./:/usr/src/app
+        working_dir: /usr/src/app
+        command: sh -c 'npm install; npm run devstart'
+        ports:
+            - '3000:3000'
+        depends_on:
+            - db
